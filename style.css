@@ -1,0 +1,134 @@
+/* Base Styles - Minimalistic, no noise texture */
+body {
+    background-color: #0A0A0A;
+    color: #F0F0F0;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    cursor: none; /* Hide default cursor */
+}
+
+/* Navigation */
+.navbar-blur {
+    background-color: rgba(10, 10, 10, 0.85); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    border-color: rgba(231, 0, 0, 0.3); /* Softer red border */
+}
+
+/* Custom Cursor CSS - FIXED */
+#custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12px; /* Slightly smaller initial size */
+    height: 12px;
+    background: #FFC300; 
+    border-radius: 50%;
+    pointer-events: none; 
+    z-index: 9999;
+    opacity: 0.8; /* Brighter gold dot */
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease, transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Cursor state when hovering over interactive elements */
+.cursor-effect {
+    width: 30px !important; /* Slightly smaller glow */
+    height: 30px !important;
+    opacity: 1 !important;
+    background: transparent !important;
+    border: 2px solid #E70000; 
+    box-shadow: 0 0 5px #E70000, 0 0 10px rgba(255, 195, 0, 0.5); /* Thinner glow */
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Animation Classes */
+.slide-in {
+    opacity: 1; /* Changed from 0 to 1 to make content visible by default */
+    transform: translateY(0); /* Changed from 10px to 0 to remove initial offset */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Minimalistic Card Style */
+.digital-card {
+    background-color: #111111; /* Lighter dark grey for less contrast/more minimalism */
+    border: 1px solid #333;
+    box-shadow: 0 0 0 1px #222; /* Very thin initial border */
+    transition: all 0.2s ease-in-out;
+    border-top: 3px solid #E70000; 
+}
+.digital-card:hover {
+    transform: translateY(-1px);
+    /* Subtle hover glow */
+    box-shadow: 0 0 10px rgba(231, 0, 0, 0.4), 0 0 0 1px #FFC300;
+}
+
+/* Neon Heading Style */
+.neon-heading {
+    text-shadow: 0 0 7px #E70000, 0 0 10px rgba(231, 0, 0, 0.5); /* Consistent red neon glow */
+}
+
+/* Gold CTA - Sharper Look */
+.gold-cta {
+    background-color: #FFC300;
+    color: #0A0A0A;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    transition: all 0.2s ease;
+    text-shadow: 1px 1px 1px #000;
+    box-shadow: 0 0 10px rgba(255, 195, 0, 0.5); /* Add neon glow to CTA */
+}
+.gold-cta:hover {
+    background-color: #FFE58A;
+    transform: scale(1.01);
+}
+
+/* Hero Text Animation - Adjusted for smaller text and thinner glow */
+.hero-text {
+    animation: text-shadow-pulse 1.8s infinite alternate;
+}
+
+@keyframes text-shadow-pulse {
+    0% { text-shadow: 0 0 3px rgba(231, 0, 0, 0.3); }
+    100% { text-shadow: 0 0 8px #E70000; }
+}
+
+/* Ensure input elements are sleek */
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #FFC300 !important;
+    box-shadow: 0 0 5px #FFC300;
+}
+
+/* Make sure all content is visible */
+section {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Ensure proper spacing and visibility */
+.py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+.min-h-screen {
+    min-height: 100vh;
+}
+
+/* Make sure grid items are visible */
+.grid {
+    display: grid;
+}
+
+.md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.gap-8 {
+    gap: 2rem;
+}

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOSENSE | Digital Sound Engineer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'digital-black': '#0A0A0A',
+                        'neon-gold': '#FFC300',
+                        'electric-red': '#E70000',
+                        'card-dark': '#181818',
+                    },
+                    fontFamily: {
+                        'display': ['Bebas Neue', 'sans-serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                        'mono': ['Source Code Pro', 'monospace'],
+                    },
+                    boxShadow: {
+                        'red-glow-minimal': '0 0 8px rgba(231, 0, 0, 0.7)', 
+                        'gold-glow-minimal': '0 0 8px rgba(255, 195, 0, 0.7)', 
+                        'card-shadow-minimal': '0 0 0 1px #333, 0 0 5px rgba(231, 0, 0, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Navigation - Glassmorphism Blur -->
+    <nav class="fixed top-0 left-0 right-0 z-50 navbar-blur shadow-xl border-b border-electric-red">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Brand Name -->
+                <a href="#hero" class="text-3xl font-display font-black text-neon-gold tracking-widest hover:text-white transition-colors duration-300 interactive-element neon-heading">
+                    MO<span class="text-electric-red">SENSE</span>
+                </a>
+                
+                <!-- Nav Links -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#bio" class="nav-link text-base text-gray-300 hover:text-neon-gold transition-colors duration-300 uppercase tracking-widest interactive-element">SOUND</a>
+                    <a href="#code" class="nav-link text-base text-gray-300 hover:text-neon-gold transition-colors duration-300 uppercase tracking-widest interactive-element">CODE</a>
+                    <a href="#beats" class="nav-link text-base text-gray-300 hover:text-neon-gold transition-colors duration-300 uppercase tracking-widest interactive-element">VAULT</a>
+                    <a href="#contact" class="nav-link text-base text-gray-300 hover:text-neon-gold transition-colors duration-300 uppercase tracking-widest interactive-element">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- CUSTOM CURSOR ELEMENT -->
+        <div id="custom-cursor"></div>
+
+        <!-- 1. Hero Section -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center p-8 bg-digital-black border-b border-electric-red">
+            <div class="text-center pt-16">
+                <!-- REDUCED TAGLINE SIZE -->
+                <p class="text-electric-red text-xl sm:text-2xl font-display mb-2 uppercase tracking-[0.4em] neon-heading">SOUND DESIGNED</p>
+                
+                <!-- REDUCED MAIN HEADING SIZE (from 10rem to 8xl on desktop) -->
+                <h1 class="text-6xl sm:text-8xl font-display font-black text-neon-gold leading-none tracking-tighter uppercase hero-text">
+                    MOSENSE
+                </h1>
+                <!-- REDUCED SUBTITLE SIZE (from 5xl to 3xl on desktop) -->
+                <h2 class="text-xl sm:text-3xl font-display font-bold text-white mt-4 mb-10 tracking-widest">
+                    PRECISION AUDIO ENGINEERING
+                </h2>
+                <!-- NEON CTA -->
+                <a href="#beats" class="gold-cta py-3 px-8 rounded-full text-lg interactive-element">
+                    BROWSE PROJECTS
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. Bio/Dual-Skill Section -->
+        <section id="bio" class="py-24 bg-card-dark border-b border-gray-800">
+            <div class="max-w-7xl mx-auto px-4">
+                <!-- REDUCED TITLE SIZE AND ADDED NEON -->
+                <h3 class="text-4xl font-display font-bold text-center text-electric-red mb-16 uppercase tracking-wider neon-heading">
+                    THE DUAL-STACK APPROACH
+                </h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <!-- Sound Focus - Used minimalist digital-card -->
+                    <div class="col-span-1 p-6 rounded-lg digital-card">
+                        <h4 class="text-2xl font-display text-neon-gold mb-3 uppercase neon-heading">Audio Architect</h4>
+                        <p class="text-gray-400 mb-4 text-sm">My production style is built on heavy 808s, futuristic synths, and complex rhythmic structures. I specialize in Hip-Hop, R&B, and Hyper Kenyan sound-scape, focusing on textures that are both sharp and atmospheric.</p>
+                        <!-- NEON BORDER QUOTE -->
+                        <p class="border-l-2 border-neon-gold pl-3 text-white italic text-base">"The goal is engineered impact. Every frequency matters."</p>
+                    </div>
+
+                    <!-- Developer Focus - Used minimalist digital-card -->
+                    <div class="col-span-1 p-6 rounded-lg digital-card">
+                         <h4 class="text-2xl font-display text-electric-red mb-3 uppercase neon-heading">Code Implementation</h4>
+                        <p class="text-gray-400 mb-4 text-sm">I'm a seasoned **Software Developer** proficient in **JavaScript** and **HTML**, building custom web applications and immersive digital experiences. I bring the same structured logic to music and code.</p>
+                        <!-- NEON BORDER QUOTE -->
+                        <p class="border-l-2 border-electric-red pl-3 text-white italic text-base">`// Building the future beat by beat😂.`</p>
+                    </div>
+
+                    <!-- Placeholder/Callout Image - Minimalist Border -->
+                    <div class="col-span-1 w-full h-72 lg:h-96 bg-gray-900 border-2 border-neon-gold rounded-lg shadow-gold-glow-minimal flex items-center justify-center overflow-hidden">
+                        <!-- Placeholder for Logo or Abstract Vibe Art -->
+                        <p class="text-gray-500 font-display text-xl tracking-widest">MOSENSE VIBE</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Dev Services Section -->
+        <section id="code" class="py-24 bg-digital-black">
+            <div class="max-w-6xl mx-auto px-4">
+                <!-- REDUCED TITLE SIZE AND ADDED NEON -->
+                <h3 class="text-4xl font-display font-bold text-center text-neon-gold mb-16 uppercase tracking-wider neon-heading">
+                    SOFTWARE & MEDIA SERVICES
+                </h3>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    
+                    <!-- Dev Service 1 - Used minimalist styling -->
+                    <div class="p-6 rounded-lg border-2 border-electric-red bg-card-dark transition duration-300 hover:shadow-red-glow-minimal">
+                        <h4 class="text-xl font-display text-white mb-3 uppercase neon-heading">Artist Landing Pages (HTML/JS)</h4>
+                        <p class="text-gray-400 mb-4 text-sm">Need a high-converting, custom beat store or artist portfolio that performs better than templates? I build them from the ground up, optimized for speed and conversion.</p>
+                        <code class="block font-mono text-xs bg-gray-900 p-2 text-neon-gold rounded">
+                            &lt;a href="beats.html"&gt;Buy Now&lt;/a&gt; // Optimized CTA
+                        </code>
+                    </div>
+
+                    <!-- Dev Service 2 - Used minimalist styling -->
+                    <div class="p-6 rounded-lg border-2 border-neon-gold bg-card-dark transition duration-300 hover:shadow-gold-glow-minimal">
+                        <h4 class="text-xl font-display text-white mb-3 uppercase neon-heading">Interactive Audio Visualizers</h4>
+                        <p class="text-gray-400 mb-4 text-sm">Using JavaScript, I create custom, responsive visualizers for your tracks, turning static music links into engaging, shareable experiences for social media and live streams.</p>
+                        <code class="block font-mono text-xs bg-gray-900 p-2 text-electric-red rounded">
+                            requestAnimationFrame(renderLoop)
+                        </code>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                     <!-- NEON CTA -->
+                     <a href="#contact" class="gold-cta py-3 px-8 rounded-full text-lg interactive-element">
+                        START A CONVERSATION
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Beat Vault Section (Mock List) -->
+        <section id="beats" class="py-24 bg-card-dark border-t border-b border-gray-800">
+            <div class="max-w-4xl mx-auto px-4">
+                <!-- REDUCED TITLE SIZE AND ADDED NEON -->
+                <h3 class="text-4xl font-display font-bold text-center text-electric-red mb-16 uppercase tracking-wider neon-heading">
+                    SELECTED WORK
+                </h3>
+                
+                <ul class="space-y-3">
+                    <!-- Beat Item 1 - Minimalist border and hover -->
+                    <li class="p-4 bg-[#111] rounded-lg border-l-2 border-neon-gold flex justify-between items-center transition duration-300 hover:bg-[#151515] hover:shadow-gold-glow-minimal">
+                        <span class="text-lg font-display text-white uppercase tracking-wider">01. GHOST PROTOCOL <span class="text-gray-500 text-xs">(808 HEAVY)</span></span>
+                        <button class="text-neon-gold hover:text-white transition-colors duration-300 text-lg font-display interactive-element">
+                            <span class="text-xl">▶</span> LISTEN
+                        </button>
+                    </li>
+                    <!-- Beat Item 2 - Minimalist border and hover -->
+                    <li class="p-4 bg-[#111] rounded-lg border-l-2 border-electric-red flex justify-between items-center transition duration-300 hover:bg-[#151515] hover:shadow-red-glow-minimal">
+                        <span class="text-lg font-display text-white uppercase tracking-wider">02. CYBER RENAISSANCE <span class="text-gray-500 text-xs">(FUTURE R&B)</span></span>
+                        <button class="text-electric-red hover:text-white transition-colors duration-300 text-lg font-display interactive-element">
+                            <span class="text-xl">▶</span> LISTEN
+                        </button>
+                    </li>
+                    <!-- Beat Item 3 - Minimalist border and hover -->
+                    <li class="p-4 bg-[#111] rounded-lg border-l-2 border-neon-gold flex justify-between items-center transition duration-300 hover:bg-[#151515] hover:shadow-gold-glow-minimal">
+                        <span class="text-lg font-display text-white uppercase tracking-wider">03. DRIP FEED <span class="text-gray-500 text-xs">(TRAP SOUL)</span></span>
+                        <button class="text-neon-gold hover:text-white transition-colors duration-300 text-lg font-display interactive-element">
+                            <span class="text-xl">▶</span> LISTEN
+                        </button>
+                    </li>
+                </ul>
+
+                <p class="text-center text-gray-600 mt-8 text-xs italic">
+                    Exclusive and Non-Exclusive licenses available upon direct contact.
+                </p>
+            </div>
+        </section>
+
+        <!-- 5. Contact Section -->
+        <section id="contact" class="py-24 bg-digital-black">
+            <div class="max-w-4xl mx-auto px-4">
+                <!-- REDUCED TITLE SIZE AND ADDED NEON -->
+                <h3 class="text-4xl font-display font-bold text-center text-neon-gold mb-16 uppercase tracking-wider neon-heading">
+                    GET IN TOUCH
+                </h3>
+                
+                <form id="contact-form" class="max-w-lg mx-auto">
+                    <div class="mb-6">
+                        <label for="name" class="block text-gray-300 mb-2">Name</label>
+                        <input type="text" id="name" class="w-full p-3 bg-card-dark border border-gray-700 rounded text-white focus:border-neon-gold interactive-element" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block text-gray-300 mb-2">Email</label>
+                        <input type="email" id="email" class="w-full p-3 bg-card-dark border border-gray-700 rounded text-white focus:border-neon-gold interactive-element" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-300 mb-2">Message</label>
+                        <textarea id="message" rows="5" class="w-full p-3 bg-card-dark border border-gray-700 rounded text-white focus:border-neon-gold interactive-element" required></textarea>
+                    </div>
+                    <button type="submit" class="gold-cta py-3 px-8 rounded-full text-lg w-full interactive-element">
+                        SEND MESSAGE
+                    </button>
+                    <div id="form-message" class="mt-4 text-center hidden"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-digital-black border-t border-electric-red py-6 text-center text-gray-700 text-xs">
+        <!-- Minimalist Footer -->
+        <p class="mb-2">&copy; <span id="current-year"></span> MOSENSE | Audio & Code</p>
+        <div class="space-x-6 mt-2">
+            <a href="https://www.instagram.com/topicbabymo/" class="text-gray-500 hover:text-neon-gold transition-colors duration-300 uppercase tracking-wider interactive-element" target="_blank">Instagram</a>
+            <a href="https://github.com/cewamahan-ui" class="text-gray-500 hover:text-neon-gold transition-colors duration-300 uppercase tracking-wider interactive-element" target="_blank">GitHub</a>
+            <a href="" class="text-gray-500 hover:text-neon-gold transition-colors duration-300 uppercase tracking-wider interactive-element" target="_blank">SoundCloud</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
