@@ -3,235 +3,456 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOSENSE | Digital Sound Engineer</title>
+    <title>MOSENSE | Underground Sound Architect</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'digital-black': '#0A0A0A',
-                        'neon-gold': '#FFC300',
-                        'electric-red': '#E70000',
-                        'card-dark': '#181818',
+                        'void': '#050505',
+                        'crimson': '#DC143C',
+                        'blood': '#8B0000',
+                        'neon-red': '#FF073A',
+                        'dark-metal': '#0A0A0F',
+                        'steel': '#1A1A24',
+                        'ash': '#2A2A35',
                     },
                     fontFamily: {
-                        'display': ['Bebas Neue', 'sans-serif'],
-                        'sans': ['Inter', 'sans-serif'],
-                        'mono': ['Source Code Pro', 'monospace'],
+                        'graffiti': ['Permanent Marker', 'cursive'],
+                        'cyber': ['Orbitron', 'sans-serif'],
+                        'tech': ['Rajdhani', 'sans-serif'],
+                        'matrix': ['Share Tech Mono', 'monospace'],
                     },
-                    boxShadow: {
-                        'red-glow-minimal': '0 0 8px rgba(231, 0, 0, 0.7)', 
-                        'gold-glow-minimal': '0 0 8px rgba(255, 195, 0, 0.7)', 
-                        'card-shadow-minimal': '0 0 0 1px #333, 0 0 5px rgba(231, 0, 0, 0.3)',
-                    }
                 }
             }
         }
     </script>
 </head>
-<body class="antialiased overflow-x-hidden">
+<body class="bg-void text-white overflow-x-hidden">
 
-    <!-- Navigation - Glassmorphism Blur -->
-    <nav class="fixed top-0 left-0 right-0 z-50 navbar-blur shadow-xl border-b border-electric-red">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo/Brand Name -->
-                <a href="#hero" class="text-3xl font-display font-black text-neon-gold tracking-widest hover:text-white transition-colors duration-300 interactive-element neon-heading">
-                    MO<span class="text-electric-red">SENSE</span>
+    <!-- Animated Background Canvas -->
+    <canvas id="matrix-bg" class="fixed inset-0 z-0 opacity-30"></canvas>
+    
+    <!-- Scanline Overlay -->
+    <div class="scanlines fixed inset-0 z-10 pointer-events-none"></div>
+
+    <!-- Custom Cursor -->
+    <div id="custom-cursor"></div>
+
+    <!-- Navigation - Futuristic HUD Style -->
+    <nav class="fixed top-0 left-0 right-0 z-50 hud-nav">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#hero" class="cyber-logo">
+                    <span class="text-4xl font-cyber font-black text-crimson tracking-widest">
+                        M<span class="text-neon-red animate-pulse">O</span>SENSE
+                    </span>
+                    <div class="text-[10px] font-matrix text-ash tracking-[0.5em] -mt-1">SOUND_ARCHITECT</div>
                 </a>
-                
+
                 <!-- Nav Links -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#bio" class="nav-link text-base text-gray-300 hover:text-neon-gold transition-colors duration-300 uppercase tracking-widest interactive-element">SOUND</a>
-                    <a href="#code" class="nav-link text-base text-gray-300 hover:text-neon-gold transition-colors duration-300 uppercase tracking-widest interactive-element">CODE</a>
-                    <a href="#beats" class="nav-link text-base text-gray-300 hover:text-neon-gold transition-colors duration-300 uppercase tracking-widest interactive-element">VAULT</a>
-                    <a href="#contact" class="nav-link text-base text-gray-300 hover:text-neon-gold transition-colors duration-300 uppercase tracking-widest interactive-element">CONTACT</a>
+                <div class="hidden md:flex space-x-10">
+                    <a href="#manifesto" class="hud-link">MANIFESTO</a>
+                    <a href="#arsenal" class="hud-link">ARSENAL</a>
+                    <a href="#vault" class="hud-link">VAULT</a>
+                    <a href="#transmissions" class="hud-link">TRANSMISSIONS</a>
+                    <a href="#contact" class="hud-link">SIGNAL</a>
                 </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="#manifesto" class="mobile-link">MANIFESTO</a>
+            <a href="#arsenal" class="mobile-link">ARSENAL</a>
+            <a href="#vault" class="mobile-link">VAULT</a>
+            <a href="#transmissions" class="mobile-link">TRANSMISSIONS</a>
+            <a href="#contact" class="mobile-link">SIGNAL</a>
         </div>
     </nav>
 
-    <main>
-        <!-- CUSTOM CURSOR ELEMENT -->
-        <div id="custom-cursor"></div>
+    <main class="relative z-20">
 
-        <!-- 1. Hero Section -->
-        <section id="hero" class="relative min-h-screen flex items-center justify-center p-8 bg-digital-black border-b border-electric-red">
-            <div class="text-center pt-16">
-                <!-- REDUCED TAGLINE SIZE -->
-                <p class="text-electric-red text-xl sm:text-2xl font-display mb-2 uppercase tracking-[0.4em] neon-heading">SOUND DESIGNED</p>
-                
-                <!-- REDUCED MAIN HEADING SIZE (from 10rem to 8xl on desktop) -->
-                <h1 class="text-6xl sm:text-8xl font-display font-black text-neon-gold leading-none tracking-tighter uppercase hero-text">
-                    MOSENSE
+
+        <!-- 1. Hero Section - Underground Matrix Vibe -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <!-- Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-void via-transparent to-void z-10"></div>
+            
+            <div class="text-center px-6 relative z-20">
+                <!-- Glitch Effect Subtitle -->
+                <div class="glitch-wrapper mb-4">
+                    <p class="font-matrix text-neon-red text-sm sm:text-base tracking-[1em] uppercase glitch-text" data-text="UNDERGROUND SOUND">
+                        UNDERGROUND SOUND
+                    </p>
+                </div>
+
+                <!-- Main Title with Cyber Border -->
+                <h1 class="cyber-title font-cyber font-black text-7xl sm:text-9xl lg:text-[12rem] leading-none tracking-tighter mb-6">
+                    <span class="text-gradient">MO</span><span class="text-white">SENSE</span>
+                    <div class="cyber-line"></div>
                 </h1>
-                <!-- REDUCED SUBTITLE SIZE (from 5xl to 3xl on desktop) -->
-                <h2 class="text-xl sm:text-3xl font-display font-bold text-white mt-4 mb-10 tracking-widest">
-                    PRECISION AUDIO ENGINEERING
+
+                <!-- Tagline -->
+                <h2 class="font-tech text-xl sm:text-3xl text-ash mb-12 tracking-widest font-light">
+                    DIGITAL <span class="text-crimson font-semibold">AUDIO</span> ENGINEERING
                 </h2>
-                <!-- NEON CTA -->
-                <a href="#beats" class="gold-cta py-3 px-8 rounded-full text-lg interactive-element">
-                    BROWSE PROJECTS
-                </a>
-            </div>
-        </section>
 
-        <!-- 2. Bio/Dual-Skill Section -->
-        <section id="bio" class="py-24 bg-card-dark border-b border-gray-800">
-            <div class="max-w-7xl mx-auto px-4">
-                <!-- REDUCED TITLE SIZE AND ADDED NEON -->
-                <h3 class="text-4xl font-display font-bold text-center text-electric-red mb-16 uppercase tracking-wider neon-heading">
-                    THE DUAL-STACK APPROACH
-                </h3>
-                <div class="grid md:grid-cols-3 gap-8">
-                    
-                    <!-- Sound Focus - Used minimalist digital-card -->
-                    <div class="col-span-1 p-6 rounded-lg digital-card">
-                        <h4 class="text-2xl font-display text-neon-gold mb-3 uppercase neon-heading">Audio Architect</h4>
-                        <p class="text-gray-400 mb-4 text-sm">My production style is built on heavy 808s, futuristic synths, and complex rhythmic structures. I specialize in Hip-Hop, R&B, and Hyper Kenyan sound-scape, focusing on textures that are both sharp and atmospheric.</p>
-                        <!-- NEON BORDER QUOTE -->
-                        <p class="border-l-2 border-neon-gold pl-3 text-white italic text-base">"The goal is engineered impact. Every frequency matters."</p>
-                    </div>
-
-                    <!-- Developer Focus - Used minimalist digital-card -->
-                    <div class="col-span-1 p-6 rounded-lg digital-card">
-                         <h4 class="text-2xl font-display text-electric-red mb-3 uppercase neon-heading">Code Implementation</h4>
-                        <p class="text-gray-400 mb-4 text-sm">I'm a seasoned **Software Developer** proficient in **JavaScript** and **HTML**, building custom web applications and immersive digital experiences. I bring the same structured logic to music and code.</p>
-                        <!-- NEON BORDER QUOTE -->
-                        <p class="border-l-2 border-electric-red pl-3 text-white italic text-base">`// Building the future beat by beat😂.`</p>
-                    </div>
-
-                    <!-- Placeholder/Callout Image - Minimalist Border -->
-                    <div class="col-span-1 w-full h-72 lg:h-96 bg-gray-900 border-2 border-neon-gold rounded-lg shadow-gold-glow-minimal flex items-center justify-center overflow-hidden">
-                        <!-- Placeholder for Logo or Abstract Vibe Art -->
-                        <p class="text-gray-500 font-display text-xl tracking-widest">MOSENSE VIBE</p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. Dev Services Section -->
-        <section id="code" class="py-24 bg-digital-black">
-            <div class="max-w-6xl mx-auto px-4">
-                <!-- REDUCED TITLE SIZE AND ADDED NEON -->
-                <h3 class="text-4xl font-display font-bold text-center text-neon-gold mb-16 uppercase tracking-wider neon-heading">
-                    SOFTWARE & MEDIA SERVICES
-                </h3>
-                
-                <div class="grid md:grid-cols-2 gap-8">
-                    
-                    <!-- Dev Service 1 - Used minimalist styling -->
-                    <div class="p-6 rounded-lg border-2 border-electric-red bg-card-dark transition duration-300 hover:shadow-red-glow-minimal">
-                        <h4 class="text-xl font-display text-white mb-3 uppercase neon-heading">Artist Landing Pages (HTML/JS)</h4>
-                        <p class="text-gray-400 mb-4 text-sm">Need a high-converting, custom beat store or artist portfolio that performs better than templates? I build them from the ground up, optimized for speed and conversion.</p>
-                        <code class="block font-mono text-xs bg-gray-900 p-2 text-neon-gold rounded">
-                            &lt;a href="beats.html"&gt;Buy Now&lt;/a&gt; // Optimized CTA
-                        </code>
-                    </div>
-
-                    <!-- Dev Service 2 - Used minimalist styling -->
-                    <div class="p-6 rounded-lg border-2 border-neon-gold bg-card-dark transition duration-300 hover:shadow-gold-glow-minimal">
-                        <h4 class="text-xl font-display text-white mb-3 uppercase neon-heading">Interactive Audio Visualizers</h4>
-                        <p class="text-gray-400 mb-4 text-sm">Using JavaScript, I create custom, responsive visualizers for your tracks, turning static music links into engaging, shareable experiences for social media and live streams.</p>
-                        <code class="block font-mono text-xs bg-gray-900 p-2 text-electric-red rounded">
-                            requestAnimationFrame(renderLoop)
-                        </code>
-                    </div>
-                </div>
-
-                <div class="text-center mt-12">
-                     <!-- NEON CTA -->
-                     <a href="#contact" class="gold-cta py-3 px-8 rounded-full text-lg interactive-element">
-                        START A CONVERSATION
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <a href="#vault" class="cyber-btn">
+                        <span class="btn-text">ENTER THE VAULT</span>
+                        <span class="btn-glitch"></span>
+                    </a>
+                    <a href="#contact" class="ghost-btn">
+                        <span>INITIATE CONTACT</span>
                     </a>
                 </div>
+
+                <!-- Scroll Indicator -->
+                <div class="scroll-indicator mt-20">
+                    <div class="scroll-line"></div>
+                    <p class="font-matrix text-ash text-xs tracking-widest mt-2">SCROLL DOWN</p>
+                </div>
+            </div>
+
+            <!-- Floating Side Elements -->
+            <div class="absolute left-8 top-1/2 -translate-y-1/2 hidden lg:block">
+                <div class="writing-mode-vertical font-matrix text-ash text-xs tracking-[0.5em]">
+                    EST. 2024 // UNDERGROUND COLLECTIVE
+                </div>
             </div>
         </section>
 
-        <!-- 4. Beat Vault Section (Mock List) -->
-        <section id="beats" class="py-24 bg-card-dark border-t border-b border-gray-800">
-            <div class="max-w-4xl mx-auto px-4">
-                <!-- REDUCED TITLE SIZE AND ADDED NEON -->
-                <h3 class="text-4xl font-display font-bold text-center text-electric-red mb-16 uppercase tracking-wider neon-heading">
-                    SELECTED WORK
-                </h3>
-                
-                <ul class="space-y-3">
-                    <!-- Beat Item 1 - Minimalist border and hover -->
-                    <li class="p-4 bg-[#111] rounded-lg border-l-2 border-neon-gold flex justify-between items-center transition duration-300 hover:bg-[#151515] hover:shadow-gold-glow-minimal">
-                        <span class="text-lg font-display text-white uppercase tracking-wider">01. GHOST PROTOCOL <span class="text-gray-500 text-xs">(808 HEAVY)</span></span>
-                        <button class="text-neon-gold hover:text-white transition-colors duration-300 text-lg font-display interactive-element">
-                            <span class="text-xl">▶</span> LISTEN
-                        </button>
-                    </li>
-                    <!-- Beat Item 2 - Minimalist border and hover -->
-                    <li class="p-4 bg-[#111] rounded-lg border-l-2 border-electric-red flex justify-between items-center transition duration-300 hover:bg-[#151515] hover:shadow-red-glow-minimal">
-                        <span class="text-lg font-display text-white uppercase tracking-wider">02. CYBER RENAISSANCE <span class="text-gray-500 text-xs">(FUTURE R&B)</span></span>
-                        <button class="text-electric-red hover:text-white transition-colors duration-300 text-lg font-display interactive-element">
-                            <span class="text-xl">▶</span> LISTEN
-                        </button>
-                    </li>
-                    <!-- Beat Item 3 - Minimalist border and hover -->
-                    <li class="p-4 bg-[#111] rounded-lg border-l-2 border-neon-gold flex justify-between items-center transition duration-300 hover:bg-[#151515] hover:shadow-gold-glow-minimal">
-                        <span class="text-lg font-display text-white uppercase tracking-wider">03. DRIP FEED <span class="text-gray-500 text-xs">(TRAP SOUL)</span></span>
-                        <button class="text-neon-gold hover:text-white transition-colors duration-300 text-lg font-display interactive-element">
-                            <span class="text-xl">▶</span> LISTEN
-                        </button>
-                    </li>
-                </ul>
+        <!-- 2. Manifesto Section -->
+        <section id="manifesto" class="py-32 relative">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="text-center mb-20 reveal">
+                    <div class="section-tag">// THE MANIFESTO</div>
+                    <h3 class="section-title graffiti-text">SOUND WITHOUT <span class="text-crimson">COMPROMISE</span></h3>
+                </div>
 
-                <p class="text-center text-gray-600 mt-8 text-xs italic">
-                    Exclusive and Non-Exclusive licenses available upon direct contact.
+                <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                    <!-- Audio Architect Card -->
+                    <div class="manifesto-card sound-card reveal">
+                        <div class="manifesto-icon">
+                            <svg class="w-14 h-14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+                            </svg>
+                        </div>
+                        <h4 class="manifesto-title">SOUND ARCHITECT</h4>
+                        <p class="manifesto-text">
+                            Heavy 808s that rattle your chest. Futuristic synths painting atmospheres. Complex rhythmic structures that make heads nod. I engineer sound across Hip-Hop, R&B, and Hyper Kenyan soundscapes.
+                        </p>
+                        <div class="equalizer">
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                        </div>
+                    </div>
+
+                    <!-- Code Implementation Card -->
+                    <div class="manifesto-card code-card reveal">
+                        <div class="manifesto-icon code-icon">
+                            <svg class="w-14 h-14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <h4 class="manifesto-title code-title">CODE IMPLEMENTATION</h4>
+                        <p class="manifesto-text code-text">
+                            Software developer wielding JavaScript and HTML to build immersive digital experiences. The same structured logic that shapes my beats shapes my code.
+                        </p>
+                        <div class="code-block">
+                            <span class="code-keyword">const</span> <span class="code-var">future</span> = <span class="code-string">"built beat by beat"</span>;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Arsenal Section (Skills & Services) -->
+        <section id="arsenal" class="py-32 bg-dark-metal relative">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-20 reveal">
+                    <div class="section-tag">// THE ARSENAL</div>
+                    <h3 class="section-title graffiti-text">TOOLS OF THE <span class="text-crimson">TRADE</span></h3>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="arsenal-card reveal">
+                        <div class="arsenal-number">01</div>
+                        <h4 class="arsenal-title">BEAT STORES &<br>ARTIST SITES</h4>
+                        <p class="arsenal-desc">
+                            Custom-built from the ground up. No templates. High-converting landing pages that actually sell your sound.
+                        </p>
+                        <div class="arsenal-tags">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">CSS3</span>
+                        </div>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="arsenal-card reveal">
+                        <div class="arsenal-number">02</div>
+                        <h4 class="arsenal-title">AUDIO<br>VISUALIZERS</h4>
+                        <p class="arsenal-desc">
+                            Interactive, responsive visualizers that turn your tracks into shareable experiences for social and live streams.
+                        </p>
+                        <div class="arsenal-tags">
+                            <span class="tag">Web Audio API</span>
+                            <span class="tag">Canvas</span>
+                            <span class="tag">Animation</span>
+                        </div>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="arsenal-card reveal">
+                        <div class="arsenal-number">03</div>
+                        <h4 class="arsenal-title">FULL-STACK<br>APPLICATIONS</h4>
+                        <p class="arsenal-desc">
+                            Web apps, dashboards, platforms—bringing the same attention to detail from the studio to the code editor.
+                        </p>
+                        <div class="arsenal-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">APIs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Beat Vault Section -->
+        <section id="vault" class="py-32 relative">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="text-center mb-20 reveal">
+                    <div class="section-tag">// THE VAULT</div>
+                    <h3 class="section-title graffiti-text">SELECTED <span class="text-crimson">WORK</span></h3>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Beat 1 -->
+                    <div class="beat-track reveal">
+                        <div class="track-info">
+                            <div class="track-number">01</div>
+                            <div class="track-details">
+                                <h4 class="track-name">GHOST PROTOCOL</h4>
+                                <span class="track-genre">808 HEAVY // TRAP</span>
+                            </div>
+                        </div>
+                        <div class="track-controls">
+                            <div class="waveform-visual">
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                            </div>
+                            <button class="play-btn">
+                                <svg class="play-icon" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Beat 2 -->
+                    <div class="beat-track reveal">
+                        <div class="track-info">
+                            <div class="track-number">02</div>
+                            <div class="track-details">
+                                <h4 class="track-name">CYBER RENAISSANCE</h4>
+                                <span class="track-genre">FUTURE R&B // ATMOSPHERIC</span>
+                            </div>
+                        </div>
+                        <div class="track-controls">
+                            <div class="waveform-visual">
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                            </div>
+                            <button class="play-btn">
+                                <svg class="play-icon" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Beat 3 -->
+                    <div class="beat-track reveal">
+                        <div class="track-info">
+                            <div class="track-number">03</div>
+                            <div class="track-details">
+                                <h4 class="track-name">DRIP FEED</h4>
+                                <span class="track-genre">TRAP SOUL // MELODIC</span>
+                            </div>
+                        </div>
+                        <div class="track-controls">
+                            <div class="waveform-visual">
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                            </div>
+                            <button class="play-btn">
+                                <svg class="play-icon" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Beat 4 -->
+                    <div class="beat-track reveal">
+                        <div class="track-info">
+                            <div class="track-number">04</div>
+                            <div class="track-details">
+                                <h4 class="track-name">NAIROBI AFTER DARK</h4>
+                                <span class="track-genre">HYPER KENYAN // UNDERGROUND</span>
+                            </div>
+                        </div>
+                        <div class="track-controls">
+                            <div class="waveform-visual">
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                            </div>
+                            <button class="play-btn">
+                                <svg class="play-icon" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-center text-ash mt-12 font-matrix text-sm">
+                    // Exclusive and Non-Exclusive licenses available upon direct contact.
                 </p>
             </div>
         </section>
 
         <!-- 5. Contact Section -->
-        <section id="contact" class="py-24 bg-digital-black">
-            <div class="max-w-4xl mx-auto px-4">
-                <!-- REDUCED TITLE SIZE AND ADDED NEON -->
-                <h3 class="text-4xl font-display font-bold text-center text-neon-gold mb-16 uppercase tracking-wider neon-heading">
-                    GET IN TOUCH
-                </h3>
-                
-                <form id="contact-form" class="max-w-lg mx-auto">
-                    <div class="mb-6">
-                        <label for="name" class="block text-gray-300 mb-2">Name</label>
-                        <input type="text" id="name" class="w-full p-3 bg-card-dark border border-gray-700 rounded text-white focus:border-neon-gold interactive-element" required>
+        <section id="contact" class="py-32 bg-dark-metal relative">
+            <div class="max-w-3xl mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <div class="section-tag">// TRANSMISSION</div>
+                    <h3 class="section-title graffiti-text">SEND A <span class="text-crimson">SIGNAL</span></h3>
+                    <p class="text-ash mt-4">Got a project? Need a beat? Let's connect.</p>
+                </div>
+
+                <form id="contact-form" class="contact-form reveal">
+                    <div class="form-group">
+                        <label for="name" class="form-label">NAME</label>
+                        <input type="text" id="name" class="form-input" placeholder="Your name" required>
+                        <div class="input-line"></div>
                     </div>
-                    <div class="mb-6">
-                        <label for="email" class="block text-gray-300 mb-2">Email</label>
-                        <input type="email" id="email" class="w-full p-3 bg-card-dark border border-gray-700 rounded text-white focus:border-neon-gold interactive-element" required>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">EMAIL</label>
+                        <input type="email" id="email" class="form-input" placeholder="your@email.com" required>
+                        <div class="input-line"></div>
                     </div>
-                    <div class="mb-6">
-                        <label for="message" class="block text-gray-300 mb-2">Message</label>
-                        <textarea id="message" rows="5" class="w-full p-3 bg-card-dark border border-gray-700 rounded text-white focus:border-neon-gold interactive-element" required></textarea>
+                    
+                    <div class="form-group">
+                        <label for="message" class="form-label">MESSAGE</label>
+                        <textarea id="message" rows="6" class="form-input" placeholder="What's the project?" required></textarea>
+                        <div class="input-line"></div>
                     </div>
-                    <button type="submit" class="gold-cta py-3 px-8 rounded-full text-lg w-full interactive-element">
-                        SEND MESSAGE
+                    
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">TRANSMIT MESSAGE</span>
+                        <span class="btn-glitch"></span>
                     </button>
-                    <div id="form-message" class="mt-4 text-center hidden"></div>
+                    
+                    <div id="form-message" class="form-response" style="display: none;"></div>
                 </form>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-digital-black border-t border-electric-red py-6 text-center text-gray-700 text-xs">
-        <!-- Minimalist Footer -->
-        <p class="mb-2">&copy; <span id="current-year"></span> MOSENSE | Audio & Code</p>
-        <div class="space-x-6 mt-2">
-            <a href="https://www.instagram.com/topicbabymo/" class="text-gray-500 hover:text-neon-gold transition-colors duration-300 uppercase tracking-wider interactive-element" target="_blank">Instagram</a>
-            <a href="https://github.com/cewamahan-ui" class="text-gray-500 hover:text-neon-gold transition-colors duration-300 uppercase tracking-wider interactive-element" target="_blank">GitHub</a>
-            <a href="" class="text-gray-500 hover:text-neon-gold transition-colors duration-300 uppercase tracking-wider interactive-element" target="_blank">SoundCloud</a>
+    <footer class="bg-void border-t border-ash py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <!-- Brand -->
+                <div>
+                    <div class="text-2xl font-cyber font-black text-crimson mb-2">
+                        M<span class="text-neon-red">O</span>SENSE
+                    </div>
+                    <p class="text-ash text-sm font-matrix">Underground Sound Architect</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="flex flex-col space-y-2">
+                    <a href="#manifesto" class="footer-link">Manifesto</a>
+                    <a href="#arsenal" class="footer-link">Arsenal</a>
+                    <a href="#vault" class="footer-link">Vault</a>
+                    <a href="#contact" class="footer-link">Contact</a>
+                </div>
+
+                <!-- Social -->
+                <div class="flex flex-col space-y-3">
+                    <a href="https://github.com/cewamahan-ui" class="social-link" target="_blank" rel="noopener noreferrer">
+                        <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        GitHub
+                    </a>
+                    <a href="https://www.instagram.com/topicbabymo/" class="social-link" target="_blank" rel="noopener noreferrer">
+                        <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                        Instagram
+                    </a>
+                    <a href="mailto:cewamahan.ke@gmail.com" class="social-link">
+                        <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        cewamahan.ke@gmail.com
+                    </a>
+                    <a href="mailto:cewamahan.dev@gmail.com" class="social-link">
+                        <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        cewamahan.dev@gmail.com
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-ash pt-6 text-center">
+                <p class="font-matrix text-ash text-xs">
+                    &copy; <span id="current-year"></span> MOSENSE // ALL RIGHTS RESERVED
+                </p>
+            </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="INDEX.js"></script>
 </body>
 </html>
