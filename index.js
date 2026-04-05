@@ -119,21 +119,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contact-form');
     const formMessage = document.getElementById('form-message');
     if (contactForm && formMessage) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             const submitBtn = this.querySelector('.submit-btn');
             const originalText = submitBtn.querySelector('.btn-text').textContent;
             submitBtn.querySelector('.btn-text').textContent = 'TRANSMITTING...';
             submitBtn.disabled = true;
 
-            setTimeout(() => {
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    formMessage.style.display = 'block';
+                    formMessage.classList.add('success');
+                    formMessage.textContent = '✓ Transmission received. Response within 24 hours.';
+                    contactForm.reset();
+                } else {
+                    formMessage.style.display = 'block';
+                    formMessage.textContent = '✕ Transmission failed. Try again.';
+                }
+            } catch (err) {
                 formMessage.style.display = 'block';
-                formMessage.classList.add('success');
-                formMessage.textContent = '✓ Transmission received. Response within 24 hours.';
-                submitBtn.querySelector('.btn-text').textContent = originalText;
-                submitBtn.disabled = false;
-                setTimeout(() => { contactForm.reset(); formMessage.style.display = 'none'; }, 4000);
-            }, 1500);
+                formMessage.textContent = '✕ Connection error. Try again.';
+            }
+
+            submitBtn.querySelector('.btn-text').textContent = originalText;
+            submitBtn.disabled = false;
+            setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
         });
     }
 
